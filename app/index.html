@@ -15,12 +15,14 @@
     <!-- build:js scripts/main.js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
   </head>
 
   <body ng-controller="defaultCtrl">
-
+    {{ githubUserName }}
+    {{ githubRepoName }}
     <div class="main-wrap">
         <h1>Intro to Publishing to Github</h1>
 
@@ -29,15 +31,33 @@
             <div class="bar-filled" style="width: {{progressPercentage}}%"></div>
         </div>
 
-        <div ng-repeat="step in steps">
-            <div>
-                <h2>{{step.title}}</h2>
+        <div ng-repeat="step in steps" class="step" ng-class="{active: currentStep == $index, prev : currentStep == $index - 1, next: currentStep == $index + 1 }" ng-hide="currentStep != $index" ng-show="currentStep == $index">
+            <div class="step-body">
+                <img ng-src="{{ step.image }}" ng-attr-title="step.imageText" alt="{{ step.imageText }}"/>
+                <div>
+                    <h2 ng-bind-html="step.title"></h2>
+                </div>
+                <div ng-if="step.subtitle">
+                    <span ng-bind-html="step.subtitle"></span>
+                </div>
+
             </div>
-            <img ng-src="{{ step.image }}" title="step.imageText" alt="{{ step.imageText }}"/>
-            <div ng-if="step.subttile" style="background: yellow;"></div>
+        </div>
+        <input ng-show="currentStep === 0" type="text" ng-model="githubUserName"/>
+        <input ng-show="currentStep === 2" type="text" ng-model="githubRepoName"/>
+
+        <div>
+            <h2 ng-if="(githubUserName && githubRepoName) && currentStep === 10">You should be able to see your page live at <a href="https://{{githubUserName}}.github.io/{{githubRepoName}}">{{githubUserName}}.github.io/{{githubRepoName}}/</a></h2>
+            <h2 ng-if="(!githubUserName || !githubRepoName) && currentStep === 10">You should be able to see your page at username.github.io/reponame/</h2>
         </div>
     </div>
 
+    <div class="btn-container">
+        <!--<div ng-show="currentStep ===0" ng-click="nextStep()" class="btn btn-sm btn-default">Let's Start</div>-->
+        <div ng-hide="currentStep === 0" ng-click="previousStep()" class="btn btn-sm btn-default" >Back</div>
+        <div ng-show="currentStep < steps.length - 1" ng-click="nextStep()" class="btn btn-sm btn-default">Next</div>
+        <div ng-show="currentStep === steps.length - 1" ng-click="ok()" class="btn btn-sm btn-default">Done</div>
+    </div>
 
   </body>
 </html>

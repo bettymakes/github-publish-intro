@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('githubApp', []);
+var app = angular.module('githubApp', ['ngSanitize']);
 
 app.controller('defaultCtrl', function($scope) {
     console.log('er ma gerd fired');
@@ -10,22 +10,81 @@ app.controller('defaultCtrl', function($scope) {
     $scope.currentStep = 0;
     $scope.steps = [
         {
-            title: 'First',
-            subtitle: 'only if',
-            image: "http://assets6.pokemon.com/assets/cms2/img/video-games/_tiles/pokemon-shuffle/pokemon-shuffle-169.jpg",
-            imageText: "haha"
+            number: 1,
+            title: 'Log into your <a href="https://github.com/login">Github</a> account.',
+            subtitle: 'If you do not have a Github account, you\'ll need to <a href="https://github.com/join">create one</a> first.',
+            image: "../images/01-sign-in.jpg",
+            imageText: "Log into Github"
         },
         {
-            title: 'Second',
+            number: 2,
+            title: 'In the nav bar, you\'ll see a plus-sign icon. Click on that icon and select create new repository.',
             subtitle: '',
-            image: "../images/test.jpg",
-            imageText: "wewe"
+            image: "../images/02-create-new-repo.jpg",
+            imageText: "Create new repository"
         },
         {
-            title: 'Third',
-            subtitle: 'this shows',
-            image: "http://assets18.pokemon.com/assets/cms2/img/trading-card-game/_tiles/xy05/xy05-groudon-kyogre-169.jpg",
-            imageText: "dada"
+            number: 3,
+            title: 'Enter a repository name',
+            subtitle: 'Think of this as the name of your project. It should be relevant and memorable.',
+            image: "../images/03-repo-name.jpg",
+            imageText: "Name new repo"
+        },
+        {
+            number: 4,
+            title: "Select initialize this repository with a README and create a repository.",
+            subtitle: 'Double check that Public is selected. It should already be chosen by default.',
+            image: "../images/04-public-readme-create.jpg",
+            imageText: "Create Repository with README "
+        },
+        {
+            number: 5,
+            title: "To create a new file, click on the plus-sign next to your repository name.",
+            subtitle: '',
+            image: "../images/05-create-new-file.jpg",
+            imageText: "Create New File"
+        },
+        {
+            number: 6,
+            title: "Name your file 'index.html'.",
+            subtitle: '',
+            image: "../images/06-name-file.jpg",
+            imageText: "Name File index.html"
+        },
+        {
+            number: 7,
+            title: "Copy your code from Sublime or from whatever IDE you're using",
+            subtitle: '',
+            image: "../images/07-copy-code.jpg",
+            imageText: "Copy Code From IDE"
+        },
+        {
+            number: 8,
+            title: "Go back to your web browser to the page where we named our file 'index.html' and paste your code.",
+            subtitle: '',
+            image: "../images/08-paste-code.jpg",
+            imageText: "Paste Code"
+        },
+        {
+            number: 9,
+            title: "Click on the 'Commit new file' button at the bottom of the page to save your changes.",
+            subtitle: '',
+            image: "../images/09-commit-file.jpg",
+            imageText: "Commit File"
+        },
+        {
+            number: 10,
+            title: "Back on your main repository page, click on the button that says 'branch: master' and in the input, create a new branch called 'gh-pages'.",
+            subtitle: 'Make sure your new branch is the exact same as the instructions \'gh-pages\'',
+            image: "../images/10-create-branch-gh-pages.jpg",
+            imageText: "Create Branch gh-pages"
+        },
+        {
+            number: 11,
+            title: "And that's it! You're done. It may take 5-10 minutes for your page to go live.",
+            subtitle: '',
+            image: "../images/11-its-alive.jpg",
+            imageText: ""
         }
     ];
 
