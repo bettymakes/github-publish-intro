@@ -9,25 +9,81 @@
 
 
 
+/*****************************************************************************
+  VARIABLES
+******************************************************************************/
+// Fonts
+$font-stack: 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
+
+// Gutter
+$gutter: 20px;
+$gutter-double: $gutter*2;
+$gutter-half: $gutter/2;
+
+// Colors
+$color-white: #FFFFFF;
+$color-blue: #3498DB;
+$color-dark-grey: #333333;
+$color-grey-hoki: #67809F;
+
+$color-primary: $color-blue;
+$color-bg: $color-grey-hoki;
+
+// Values
+$progress-bar-height: 30px;
+$main-container-width: 650px;
+
+
 
 /*****************************************************************************
-  Base Styles
+  BASE
 ******************************************************************************/
+html, body {
+  font-family: $font-stack;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 
+  font-size: 18px;
+  background-color: $color-bg;
+}
 
-
-
-/*****************************************************************************
-  Layout Styles
-******************************************************************************/
-
-
+.main-wrap {
+  width: $main-container-width;
+  margin: 0 auto;
+}
 
 
 /*****************************************************************************
   Module Styles
 ******************************************************************************/
 
+.progress-bar {
+  margin-bottom: $gutter-double;
+  &.bar-default{
+    height: $progress-bar-height;
+    width: 100%;
+    background-color: $color-white;
+    margin-bottom: $gutter-double;
+  }
 
+  .bar-filled{
+    height: 100%;
+    background-color: $color-primary;
+    -webkit-transition: width 0.5s ease;
+    -moz-transition: width 0.5s ease;
+    -ms-transition: width 0.5s ease;
+    transition: width 0.5s ease;
+  }
+
+  .bar-title {
+    margin-left: $gutter-half;
+    line-height: $progress-bar-height;
+    color: $color-dark-grey;
+    font-weight: bold;
+    font-size: 12px;
+    float: left;
+  }
+}
 
 

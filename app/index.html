@@ -9,23 +9,35 @@
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
     <link rel="stylesheet" href="../bower_components/fontawesome/css/font-awesome.css"/>
     <!-- endbuild -->
-
     <link rel="stylesheet" href="styles/main.css">
 
-    
-  </head>
 
-  <body ng-controller="defaultCtrl">
-    <h1>Time to start prototyping! {{testing}}</h1>
-    <i class="fa fa-times"></i>
-    <div class="container">
-        <h1>herro</h1>
-    </div>
-    
     <!-- build:js scripts/main.js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
+  </head>
+
+  <body ng-controller="defaultCtrl">
+
+    <div class="main-wrap">
+        <h1>Intro to Publishing to Github</h1>
+
+        <div class="progress-bar bar-default clearfix">
+            <span class="bar-title">Question {{ currentStep+1 }} of {{ steps.length }}</span>
+            <div class="bar-filled" style="width: {{progressPercentage}}%"></div>
+        </div>
+
+        <div ng-repeat="step in steps">
+            <div>
+                <h2>{{step.title}}</h2>
+            </div>
+            <img ng-src="{{ step.image }}" title="step.imageText" alt="{{ step.imageText }}"/>
+            <div ng-if="step.subttile" style="background: yellow;"></div>
+        </div>
+    </div>
+
+
   </body>
 </html>
