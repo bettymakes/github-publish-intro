@@ -25,6 +25,7 @@ $color-white: #FFFFFF;
 $color-green: #2ECC71;
 $color-dark-grey: #333333;
 $color-grey-hoki: #67809F;
+$color-red: #D91E18;
 
 $color-primary: $color-green;
 $color-bg: $color-white;
@@ -185,6 +186,7 @@ hr {
   font-size: 12px;
   text-transform: uppercase;
   padding: 5px 15px;
+  z-index: 5;
 
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
@@ -202,4 +204,12 @@ hr {
   width: 18px;
   height: 12px;
   margin-bottom: 4px;
+}
+
+.detailed-captions{
+  font-size: 12px;
+}
+
+.fa.fa-heart {
+  color: $color-red;
 }

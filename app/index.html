@@ -1,137 +1,137 @@
 <!doctype html>
 <html lang="en" ng-app="githubApp">
-  <head>
-    <meta charset="UTF-8">
-    <title>Intro to Publishing to Github</title>
+    <head>
+        <meta charset="UTF-8">
+        <title>Intro to Publishing to Github</title>
 
-    <!-- build:css styles/vendor.css -->
-    <link rel="stylesheet" type="text/css" href="../bower_components/normalize-css/normalize.css">
-    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
-    <link rel="stylesheet" href="../bower_components/fontawesome/css/font-awesome.css"/>
-    <!-- endbuild -->
-    <link rel="stylesheet" href="styles/main.css">
+        <!-- build:css styles/vendor.css -->
+        <link rel="stylesheet" type="text/css" href="../bower_components/normalize-css/normalize.css">
+        <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+        <link rel="stylesheet" href="../bower_components/fontawesome/css/font-awesome.css"/>
+        <!-- endbuild -->
+        <link rel="stylesheet" href="styles/main.css">
 
 
-    <!-- build:js scripts/vendor.js -->
-      <script src="../bower_components/angular/angular.min.js"></script>
-      <script src="../bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+        <!-- build:js scripts/vendor.js -->
+        <script src="../bower_components/angular/angular.min.js"></script>
+        <script src="../bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 
-    <!-- endbuild -->
-      <script src="scripts/main.js"></script>
-  </head>
+        <!-- endbuild -->
+        <script src="scripts/main.js"></script>
+    </head>
 
-  <body ng-controller="defaultCtrl">
-    <div class="container">
+    <body ng-controller="defaultCtrl">
         <div ng-show="(currentStep === 0) && showIntroPage">
-            <div class="intro">
-                <div class="overlay">
-                    <div class="intro-content-container">
-                        <div class="content-wrap">
-                            <h2 class="intro-title">Intro to Publishing to Github </h2>
-                            <hr/>
-                            <p class="caption">Do you have a Github account, have code you want to deploy, and are ready to rock and roll?</p>
-                            <p class="caption">Then look no further. Let's show your mom all the cool projects you've been working on!</p>
-                            <hr/>
-                            <div ng-show="currentStep ===0" ng-click="startTutorial();" class="btn btn-primary btn-lg">Let's Go</div>
+          <div class="intro">
+              <div class="overlay">
+                  <div class="intro-content-container">
+                      <div class="content-wrap">
+                          <h2 class="intro-title">Intro to Publishing to Github </h2>
+                          <hr/>
+                          <p class="caption">Do you have a Github account, have code you want to deploy, and are ready to rock and roll?</p>
+                          <p class="caption">Then look no further. Let's show your mom all the cool projects you've been working on!</p>
+                          <hr/>
+                          <div ng-show="currentStep ===0" ng-click="startTutorial();" class="btn btn-primary btn-lg">Let's Go</div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="container">
+            <div ng-hide="showIntroPage">
+                <div class="page-header clearfix">
+                    <div class="pull-left">
+                        <h1>Intro to Publishing to Github</h1>
+                    </div>
+                    <div class="pull-right">
+                        <small>
+                            <i class="fa fa-support"></i>
+                            <span>Need Help? <a href="https://twitter.com/blibotics">I got your back</a>.</span>
+                        </small>
+                    </div>
+                </div>
+
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{progressPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progressPercentage}}%">
+                        <span>Step {{ currentStep+1 }} of {{ steps.length }}</span>
+                    </div>
+                </div>
+
+                <div ng-show="currentStep === 10" class="hide-on-load alert alert-success" ng-class="{'is-visible': currentStep == 10}">
+                    <span><strong>Congrats! </strong>You should be able to see your page live at</span>
+                    <span ng-if="githubUserName && githubRepoName">
+                        <strong>
+                            <a href="http://{{githubUserName}}.github.io/{{githubRepoName}}">http://{{githubUserName}}.github.io/{{githubRepoName}}</a>.
+                        </strong>
+                    </span>
+
+                    <span ng-if="!githubUserName || !githubRepoName">
+                        <strong>
+                            <span>http://<em>{{githubUserName ? githubUserName : "username"}}</em>.github.io/<em>{{githubRepoName ? githubRepoName : "repositoryname"}}</em></span>
+                        </strong>
+                       <span><small>(ex. <a href="http://blibotics.github.io/example-repo/">http://blibotics.github.io/example-repo</a>).</small></span>
+                    </span>
+                </div>
+
+                <div class="row">
+                    <div ng-repeat="step in steps" class="step" ng-class="{active: currentStep == $index, prev : currentStep == $index - 1, next: currentStep == $index + 1 }" ng-hide="currentStep != $index" ng-show="currentStep == $index">
+                        <div class="step-body">
+                            <div class="col-md-8">
+                                <div class="panel panel-default">
+                                    <img ng-src="{{ step.image }}" ng-attr-title="step.imageText" alt="{{ step.imageText }}"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div>
+                                    <p><small class="text-muted">STEP {{currentStep+1}}</small></p>
+                                    <h3 ng-bind-html="step.title"></h3>
+                                </div>
+                                <div ng-if="step.subtitle">
+                                    <p ng-bind-html="step.subtitle"></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div class="col-md-4">
+                        <div class="form-container">
+                            <div ng-show="currentStep === 0">
+                                <p>Enter your Github Username below.</p>
+                                <input type="text" ng-model="githubUserName" class="form-control" placeholder="Github Username"/>
+                                <p><small class="text-muted detailed-captions">We'll be using this to build your final URL.</small></p>
+                            </div>
+                            <div ng-show="currentStep === 2">
+                                <p>Enter your repository name below.</p>
+                                <input type="text" ng-model="githubRepoName" class="form-control" placeholder="Repository Name"/>
+                                <p><small class="text-muted detailed-captions">We'll be using this to build your final URL.</small></p>
+                            </div>
+
+                            <div ng-show="currentStep === 10">
+                                <p>To build or modify your URL, fill in your information below.</p>
+                                <label><small class="text-muted detailed-captions">Github Username</small></label>
+                                <input type="text" ng-model="githubUserName" class="form-control" placeholder="ex. blibotics"/>
+                                <label><small class="text-muted detailed-captions">Repository Name</small></label>
+                                <input type="text" ng-model="githubRepoName" class="form-control" placeholder="ex. example-repo"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="btn-container pull-right">
+
+                    <div ng-hide="currentStep === 0" ng-click="previousStep()" class="btn btn-link" >Back</div>
+                    <div ng-show="currentStep < steps.length - 1" ng-click="nextStep()" class="btn btn-default">Next</div>
+                    <!--<div ng-show="currentStep === steps.length - 1" ng-click="ok()" class="btn btn-sm btn-default">Done</div>-->
                 </div>
             </div>
         </div>
 
-        <!--<div ng-if="currentStep >= 0">-->
-            <div class="page-header clearfix">
-                <div class="pull-left">
-                    <h1>Intro to Publishing to Github</h1>
-                </div>
-                <div class="pull-right">
-                    <small>
-                        <i class="fa fa-support"></i>
-                        <span>Need Help? <a href="https://twitter.com/blibotics">I got your back</a>.</span>
-                    </small>
-                </div>
-            </div>
 
-            <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow="{{progressPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progressPercentage}}%">
-                    <span>Step {{ currentStep+1 }} of {{ steps.length }}</span>
-                </div>
-            </div>
-
-            <div ng-show="currentStep === 10" class="hide-on-load alert alert-success" ng-class="{'is-visible': currentStep == 10}">
-                <span><strong>Congrats! </strong>You should be able to see your page live at</span>
-                <span ng-if="githubUserName && githubRepoName">
-                    <strong>
-                        <a href="http://{{githubUserName}}.github.io/{{githubRepoName}}">http://{{githubUserName}}.github.io/{{githubRepoName}}</a>.
-                    </strong>
-                </span>
-
-                <span ng-if="!githubUserName || !githubRepoName">
-                    <strong>
-                        <span>http://<em>{{githubUserName ? githubUserName : "username"}}</em>.github.io/<em>{{githubRepoName ? githubRepoName : "repositoryname"}}</em></span>
-                    </strong>
-                   <span><small>(ex. <a href="http://blibotics.github.io/example-repo/">http://blibotics.github.io/example-repo</a>).</small></span>
-                </span>
-            </div>
-
-            <div class="row">
-                <div ng-repeat="step in steps" class="step" ng-class="{active: currentStep == $index, prev : currentStep == $index - 1, next: currentStep == $index + 1 }" ng-hide="currentStep != $index" ng-show="currentStep == $index">
-                    <div class="step-body">
-                        <div class="col-md-8">
-                            <div class="panel panel-default">
-                                <img ng-src="{{ step.image }}" ng-attr-title="step.imageText" alt="{{ step.imageText }}"/>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div>
-                                <p><small class="text-muted">STEP {{currentStep+1}}</small></p>
-                                <h3 ng-bind-html="step.title"></h3>
-                            </div>
-                            <div ng-if="step.subtitle">
-                                <p ng-bind-html="step.subtitle"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-container">
-                        <div ng-show="currentStep === 0">
-                            <p>Enter your Github Username below.</p>
-                            <input type="text" ng-model="githubUserName" class="form-control" placeholder="Github Username"/>
-                            <p><small class="text-muted" style="font-size: 12px;">We'll be using this to build your final URL.</small></p>
-                        </div>
-                        <div ng-show="currentStep === 2">
-                            <p>Enter your repository name below.</p>
-                            <input type="text" ng-model="githubRepoName" class="form-control" placeholder="Repository Name"/>
-                            <p><small class="text-muted" style="font-size: 12px;">We'll be using this to build your final URL.</small></p>
-                        </div>
-
-                        <div ng-show="currentStep === 10">
-                            <p>To build or modify your URL, fill in your information below.</p>
-                            <label><small class="text-muted" style="font-size: 12px;">Github Username</small></label>
-                            <input type="text" ng-model="githubUserName" class="form-control" placeholder="ex. blibotics"/>
-                            <label><small class="text-muted" style="font-size: 12px;">Repository Name</small></label>
-                            <input type="text" ng-model="githubRepoName" class="form-control" placeholder="ex. example-repo"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="btn-container pull-right">
-
-                <div ng-hide="currentStep === 0" ng-click="previousStep()" class="btn btn-link" >Back</div>
-                <div ng-show="currentStep < steps.length - 1" ng-click="nextStep()" class="btn btn-default">Next</div>
-                <!--<div ng-show="currentStep === steps.length - 1" ng-click="ok()" class="btn btn-sm btn-default">Done</div>-->
-            </div>
+        <div class="tag">
+            <a href="https://twitter.com/blibotics">
+                <span>Made with <i class="fa fa-heart"></i> by <img class="bli-logo" src="../github-intro-to-publishing/images/bli-logo.png"/></span>
+            </a>
         </div>
-    <!--</div>-->
-
-
-    <div class="tag">
-        <a href="https://twitter.com/blibotics">
-            <span>Made with <i class="fa fa-heart" style="color: #D91E18;"></i> by <img class="bli-logo" src="../images/bli-logo.png"/></span>
-        </a>
-    </div>
-  </body>
+    </body>
 </html>
