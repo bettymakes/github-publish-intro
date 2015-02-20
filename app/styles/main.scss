@@ -27,11 +27,10 @@ $color-dark-grey: #333333;
 $color-grey-hoki: #67809F;
 
 $color-primary: $color-blue;
-$color-bg: $color-grey-hoki;
+$color-bg: $color-white;
 
 // Values
 $progress-bar-height: 30px;
-$main-container-width: 650px;
 
 
 
@@ -48,9 +47,10 @@ html, body {
   background-color: $color-bg;
 }
 
-.main-wrap {
-  width: $main-container-width;
-  margin: 0 auto;
+img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
 }
 
 
@@ -86,4 +86,29 @@ html, body {
   }
 }
 
+.form-container {
+  margin-top: $gutter;
+}
 
+.progress {
+  .progress-bar {
+    text-align: left !important;
+    span {
+      padding-left: $gutter;
+    }
+  }
+}
+
+.hide-on-load {
+  display: none;
+}
+.is-visible {
+  display: block !important;
+}
+
+.progress {
+  height: $progress-bar-height;
+  .progress-bar {
+    line-height: $progress-bar-height;
+  }
+}

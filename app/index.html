@@ -21,43 +21,73 @@
   </head>
 
   <body ng-controller="defaultCtrl">
-    {{ githubUserName }}
-    {{ githubRepoName }}
-    <div class="main-wrap">
-        <h1>Intro to Publishing to Github</h1>
-
-        <div class="progress-bar bar-default clearfix">
-            <span class="bar-title">Question {{ currentStep+1 }} of {{ steps.length }}</span>
-            <div class="bar-filled" style="width: {{progressPercentage}}%"></div>
+    <div class="container">
+        <div class="page-header">
+            <h1>Intro to Publishing to Github</h1>
         </div>
 
-        <div ng-repeat="step in steps" class="step" ng-class="{active: currentStep == $index, prev : currentStep == $index - 1, next: currentStep == $index + 1 }" ng-hide="currentStep != $index" ng-show="currentStep == $index">
-            <div class="step-body">
-                <img ng-src="{{ step.image }}" ng-attr-title="step.imageText" alt="{{ step.imageText }}"/>
-                <div>
-                    <h2 ng-bind-html="step.title"></h2>
-                </div>
-                <div ng-if="step.subtitle">
-                    <span ng-bind-html="step.subtitle"></span>
-                </div>
-
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{progressPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progressPercentage}}%">
+                <span>Step {{ currentStep+1 }} of {{ steps.length }}</span>
             </div>
         </div>
-        <input ng-show="currentStep === 0" type="text" ng-model="githubUserName"/>
-        <input ng-show="currentStep === 2" type="text" ng-model="githubRepoName"/>
 
-        <div>
-            <h2 ng-if="(githubUserName && githubRepoName) && currentStep === 10">You should be able to see your page live at <a href="https://{{githubUserName}}.github.io/{{githubRepoName}}">{{githubUserName}}.github.io/{{githubRepoName}}/</a></h2>
-            <h2 ng-if="(!githubUserName || !githubRepoName) && currentStep === 10">You should be able to see your page at username.github.io/reponame/</h2>
+        <div ng-show="currentStep === 10" class="hide-on-load alert alert-success" ng-class="{'is-visible': currentStep == 10}">
+            <span>Congrats! You should be able to see your page live at</span>
+            <strong>
+                <a ng-if="githubUserName && githubRepoName" href="https://{{githubUserName}}.github.io/{{githubRepoName}}">{{githubUserName}}.github.io/{{githubRepoName}}/</a>
+            </strong>
+            <strong>
+                <span ng-if="!githubUserName || !githubRepoName"><em>username</em>.github.io/<em>repositoryname</em>/</span>
+            </strong>
+        </div>
+
+        <div class="row">
+            <div ng-repeat="step in steps" class="step" ng-class="{active: currentStep == $index, prev : currentStep == $index - 1, next: currentStep == $index + 1 }" ng-hide="currentStep != $index" ng-show="currentStep == $index">
+                <div class="step-body">
+                    <div class="col-md-8">
+                        <div class="panel panel-default">
+                            <img ng-src="{{ step.image }}" ng-attr-title="step.imageText" alt="{{ step.imageText }}"/>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div>
+                            <p><small class="text-muted">STEP {{currentStep+1}}</small></p>
+                            <h3 ng-bind-html="step.title"></h3>
+                        </div>
+                        <div ng-if="step.subtitle">
+                            <p ng-bind-html="step.subtitle"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-container">
+                    <div ng-show="currentStep === 0">
+                        <p>Enter your Github Username below.</p>
+                        <input type="text" ng-model="githubUserName" class="form-control" placeholder="Github Username"/>
+                        <p><small class="text-muted" style="font-size: 12px;">We'll be using it to build your final URL.</small></p>
+                    </div>
+                    <div ng-show="currentStep === 2">
+                        <p>Enter your repository name below.</p>
+                        <input type="text" ng-model="githubRepoName" class="form-control" placeholder="Repository Name"/>
+                        <p><small class="text-muted" style="font-size: 12px;">We'll be using it to build your final URL.</small></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="btn-container pull-right">
+            <!--<div ng-show="currentStep ===0" ng-click="nextStep()" class="btn btn-sm btn-default">Let's Start</div>-->
+            <div ng-hide="currentStep === 0" ng-click="previousStep()" class="btn btn-link" >Back</div>
+            <div ng-show="currentStep < steps.length - 1" ng-click="nextStep()" class="btn btn-default">Next</div>
+            <!--<div ng-show="currentStep === steps.length - 1" ng-click="ok()" class="btn btn-sm btn-default">Done</div>-->
         </div>
     </div>
 
-    <div class="btn-container">
-        <!--<div ng-show="currentStep ===0" ng-click="nextStep()" class="btn btn-sm btn-default">Let's Start</div>-->
-        <div ng-hide="currentStep === 0" ng-click="previousStep()" class="btn btn-sm btn-default" >Back</div>
-        <div ng-show="currentStep < steps.length - 1" ng-click="nextStep()" class="btn btn-sm btn-default">Next</div>
-        <div ng-show="currentStep === steps.length - 1" ng-click="ok()" class="btn btn-sm btn-default">Done</div>
-    </div>
+
 
   </body>
 </html>
