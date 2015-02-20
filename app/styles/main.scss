@@ -125,6 +125,7 @@ img {
   background-image: url("../images/desktop-01.jpg");
   background-size: cover;
   color: $color-white;
+  z-index: 1;
 }
 .overlay {
   height: 100%;
