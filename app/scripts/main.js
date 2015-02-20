@@ -12,10 +12,10 @@ app.controller('defaultCtrl', function($scope) {
     $scope.currentStep = 0;
     $scope.steps = [
         {
-            title: 'Log into your <a href="https://github.com/login">Github</a> account.',
-            subtitle: 'If you do not have a Github account, you\'ll need to <a href="https://github.com/join">create one</a> first.',
+            title: 'Log into your <a href="https://github.com/login">GitHub</a> account.',
+            subtitle: 'If you do not have a GitHub account, you\'ll need to <a href="https://github.com/join">create one</a> first.',
             image: "../github-intro-to-publishing/images/01-sign-in.jpg",
-            imageText: "Log into Github"
+            imageText: "Log into GitHub"
         },
         {
             title: 'Click on the plus sign icon in the navigation bar and select \'New repository\'.',
@@ -45,7 +45,7 @@ app.controller('defaultCtrl', function($scope) {
         },
         {
             title: "Name your file 'index.html'.",
-            subtitle: 'Github will be looking for the index.html file, so be sure to name it exactly as per instructions.',
+            subtitle: 'GitHub will be looking for the index.html file, so be sure to name it exactly as per instructions.',
             image: "../github-intro-to-publishing/images/06-name-file.jpg",
             imageText: "Name File index.html"
         },
@@ -72,7 +72,7 @@ app.controller('defaultCtrl', function($scope) {
         {
             title: "Once you're back on the main repository page, click on the dropdown that says \'branch: master\'.<br> " +
                 "In the input field, create a new branch called 'gh-pages'.",
-            subtitle: 'In order for Github to get your website up online, they\'ll be looking for the gh-pages branch. So be sure to name your branch exactly as per instructions.',
+            subtitle: 'In order for GitHub to get your website up online, they\'ll be looking for the gh-pages branch. So be sure to name your branch exactly as per instructions.',
             image: "../github-intro-to-publishing/images/10-create-branch-gh-pages.jpg",
             imageText: "Create Branch gh-pages"
         },

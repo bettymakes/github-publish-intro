@@ -2,7 +2,7 @@
 <html lang="en" ng-app="githubApp">
     <head>
         <meta charset="UTF-8">
-        <title>Intro to Publishing with Github</title>
+        <title>Intro to Publishing with GitHub</title>
 
         <!-- build:css styles/vendor.css -->
         <link rel="stylesheet" type="text/css" href="../bower_components/normalize-css/normalize.css">
@@ -26,9 +26,9 @@
               <div class="overlay">
                   <div class="intro-content-container">
                       <div class="content-wrap">
-                          <h2 class="intro-title">Intro to Publishing with Github </h2>
+                          <h2 class="intro-title">Intro to Publishing with GitHub </h2>
                           <hr/>
-                          <p class="caption">Do you have a Github account, have code you want to deploy, and are ready to rock and roll?</p>
+                          <p class="caption">Do you have a GitHub account, have code you want to deploy, and are ready to rock and roll?</p>
                           <p class="caption">Then look no further. Let's show your mom all the cool projects you've been working on!</p>
                           <hr/>
                           <div ng-show="currentStep ===0" ng-click="startTutorial();" class="btn btn-primary btn-lg">Let's Go</div>
@@ -42,7 +42,7 @@
             <div ng-hide="showIntroPage">
                 <div class="page-header clearfix">
                     <div class="pull-left">
-                        <h1>Intro to Publishing with Github</h1>
+                        <h1>Intro to Publishing with GitHub</h1>
                     </div>
                     <div class="pull-right">
                         <small>
@@ -96,8 +96,8 @@
                     <div class="col-md-4">
                         <div class="form-container">
                             <div ng-show="currentStep === 0">
-                                <p>Enter your Github Username below.</p>
-                                <input type="text" ng-model="githubUserName" class="form-control" placeholder="Github Username"/>
+                                <p>Enter your GitHub Username below.</p>
+                                <input type="text" ng-model="githubUserName" class="form-control" placeholder="GitHub Username"/>
                                 <p><small class="text-muted detailed-captions">We'll be using this to build your final URL.</small></p>
                             </div>
                             <div ng-show="currentStep === 2">
@@ -108,7 +108,7 @@
 
                             <div ng-show="currentStep === 10">
                                 <p>To build or modify your URL, fill in your information below.</p>
-                                <label><small class="text-muted detailed-captions">Github Username</small></label>
+                                <label><small class="text-muted detailed-captions">GitHub Username</small></label>
                                 <input type="text" ng-model="githubUserName" class="form-control" placeholder="ex. blibotics"/>
                                 <label><small class="text-muted detailed-captions">Repository Name</small></label>
                                 <input type="text" ng-model="githubRepoName" class="form-control" placeholder="ex. example-repo"/>
